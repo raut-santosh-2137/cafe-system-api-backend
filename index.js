@@ -1,10 +1,9 @@
-const express = require("express");
-var cors = require("cors");
-const connection = require("./connection");
-const app = express();
+require("dotenv").config();
+const http = require("http");
 
-app.use(cors());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+const app = require("./src/app");
+const server = http.createServer(app);
 
-module.exports = app;
+server.listen(process.env.PORT,() => {
+    console.log("server is running on port ", process.env.PORT)
+});
